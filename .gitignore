@@ -1,0 +1,18 @@
+# Linux & PXE Lab Git Ignore
+/home/
+~/pxe-server-lab/
+*.log
+*.iso
+*.qcow2
+*.img
+*.cfg
+*.conf
+*.key
+*.pem
+
+tftpboot/
+httpboot/
+
+*~
+*.swp
+
