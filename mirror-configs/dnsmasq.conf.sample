@@ -1,38 +1,38 @@
-# Network interfaces to listen on
+### Network interfaces to listen on**
 interface=br0,lo
 # bind-interfaces  # Uncomment if needed to bind to the interface explicitly
 
-# Set your internal DNS domain name (can be anything)
+### Set your internal DNS domain name (can be anything)
 domain=rockylab.local
 
-# DHCP range and lease time
+### DHCP range and lease time
 # Replace x.x.x.x with an IP range that matches your local subnet
 # Example: 192.168.1.100,192.168.1.200
 dhcp-range=br0,x.x.x.x,x.x.x.x,255.255.255.0,1h
 
-# PXE boot configuration
+### PXE boot configuration
 # Replace x.x.x.x with the PXE server's IP address
 dhcp-boot=pxelinux.0,x.x.x.x,x.x.x.x
 
 Set to your default gateway/router IP (often ends in .1)
 dhcp-option=3,x.x.x.1
 
-# DNS server
+### DNS server
 # Use a public DNS (like 1.1.1.1) or your own
 dhcp-option=6,1.1.1.1
 
-# Upstream DNS for dnsmasq - tells dnsmasq where to forward DNS queries if it cant resolve itself
+### Upstream DNS for dnsmasq - tells dnsmasq where to forward DNS queries if it cant resolve itself
 server=x.x.x.x
 
-# Broadcast address
-# Optional. Should match your subnet's broadcast address
+### Broadcast address
+# Should match your subnet's broadcast address
 dhcp-option=28,x.x.x.255
 
-# NTP server
+### NTP server
 # Optional. Replace or leave as 0.0.0.0
 dhcp-option=42,0.0.0.0
 
-# TFTP settings
+### TFTP settings
 enable-tftp
 tftp-root=/var/lib/tftpboot
 
