@@ -4,7 +4,7 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 
 ---
 
-## 📌 Features
+## Features
 - PXE boot via `dnsmasq` (DHCP + TFTP)
 - HTTP-based installer with mounted Rocky Linux 9.6 ISO
 - Kickstart automation for headless installs
@@ -22,8 +22,7 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 
 ## Repo Structure
 - `walkthrough.md` – full step-by-step setup
-- `mirror-configs/` – sample configs (no real IPs)
-- `scripts/` – optional helper scripts like ISO mounting
+- `mirror-configs/` – sample configs for you to copy (no real IPs)
 - `screenshots/` – proof-of-work images for each stage
 
 ---
@@ -45,3 +44,13 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 
 ## Security Notice
 Do **not** push actual IP addresses or sensitive network config. Use `.sample` files instead. 
+
+## Set Secure Passwords for ks.cfg
+
+Before using this Kickstart file, generate a secure SHA-512 password hash on your PXE server or any Linux machine:
+
+```bash
+openssl passwd -6
+```
+
+You'll be prompted to enter your desired password. Copy the resulting hash and paste it in place of the `$6$REPLACE_WITH_HASHED_PASSWORD` placeholders inside `ks.cfg`:
