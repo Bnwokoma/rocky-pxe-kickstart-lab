@@ -1,4 +1,4 @@
-### Network interfaces to listen on**
+###Network interfaces to listen on
 interface=br0,lo
 # bind-interfaces  # Uncomment if needed to bind to the interface explicitly
 
