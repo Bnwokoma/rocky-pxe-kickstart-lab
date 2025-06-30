@@ -1,0 +1,27 @@
+# ==========================================================
+#🚨 IMPORTANT:
+#This should never be used in production or exposed repositories. Use only in safe, temporary lab setups.
+# ==========================================================
+
+lang en_US.UTF-8
+keyboard us
+timezone America/Chicago --utc
+
+rootpw --plaintext strongpassword
+user --name=admin --password=strongpassword --plaintext --groups=wheel
+
+graphical
+reboot
+
+network --bootproto=dhcp --device=link --onboot=on --activate
+
+url --url="http://x.x.x.x/rocky"
+
+bootloader --location=mbr
+clearpart --all --initlabel
+autopart --type=lvm
+
+%packages
+@^workstation-product-environment
+vim
+%end
