@@ -4,6 +4,14 @@
 
 This guide walks through setting up a PXE server that installs Rocky Linux 9.6 over the network with optional Kickstart automation.
 
+--- 
+## Customizing `.sample` Files
+To make the `.sample` config files work for your environment:
+
+- Replace every `x.x.x.x` with values matching your lab environment.
+- For example, if your PXE server is `192.168.50.10`, replace the DHCP range and `dhcp-boot` lines accordingly.
+- Make sure that your subnet mask, broadcast address, gateway, and DNS server match your actual network layout.
+
 ---
 
 ## 1️⃣ System Prep

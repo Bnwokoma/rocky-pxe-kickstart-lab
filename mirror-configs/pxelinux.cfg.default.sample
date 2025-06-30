@@ -1,0 +1,11 @@
+# Replace x.x.x.x with the IP address of your PXE server
+
+DEFAULT rocky
+TIMEOUT 150             # 15-second countdown before auto-boot
+PROMPT 1		#  Shows the boot menu and allows manual selection
+
+LABEL rocky
+  MENU LABEL Install Rocky Linux 9.6    # What shows in the PXE boot menu
+  KERNEL rocky96/vmlinuz		# Kernel file from TFTP server
+  APPEND initrd=rocky96/initrd.img inst.stage2=http://x.x.x.x/rocky	# Load the initrd image and tell the installer where to fetch the full GUI installer 
+
