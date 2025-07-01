@@ -18,7 +18,7 @@ To make the `.sample` config files work for your environment:
 **Baremetal machine***
 
 
-####Install Packages & start/enable them
+#### Install Packages & start/enable them
 ```
 sudo dnf update -y # applies updates to your system
 
@@ -27,7 +27,7 @@ sudo dnf install -y dnsmasq httpd syslinux tftp-server  # installs the necessary
 sudo dnf systemctl enable --now (nameOfService)
 ```
 
-####Create a bridge interface named (`br0`) using `nmcli`:
+#### Create a bridge interface named (`br0`) using `nmcli`:
 PXE isnt a fan of NAT
 
 ```
@@ -50,17 +50,17 @@ nmcli con show
 sudo cp -r /usr/share/syslinux/* /var/lib/tftpboot
 ``
 
-####Create a directory for the PXE boot menu we will create
+#### Create a directory for the PXE boot menu we will create
 
 ```
 sudo mkdir -p /var/lib/tftpboot/pxelinux.cfg
 ```
 
-####Now lets create the PXE boot menu. 
+#### Now lets create the PXE boot menu. 
 You can grab the sample file here pxelinux.cfg.default.sample{insert link}.
 
 
-##Mounting
+## Mounting
 Mount the Rocky 9.6 ISO:
 
 ```
@@ -68,7 +68,7 @@ mkdir -p /var/www/html/rocky
 sudo mount -o loop /home/admin/Downloads/Rocky-9.6-x86_64-dvd.iso /var/www/html/rocky
 ```
 
-####Make sure Apache (`httpd') is running. We enabled it in the system prep but double check.
+#### Make sure Apache (`httpd') is running. We enabled it in the system prep but double check.
 
 ```
 sudo systemctl status httpd
@@ -77,7 +77,7 @@ sudo systemctl status httpd
 
 ---
 
-##TFTP Boot Setup
+## TFTP Boot Setup
 Create the TFTP directory:
 
 ```
@@ -88,7 +88,7 @@ Copy `vmlinuz` and `initrd.img` from the ISO's `/images/pxeboot/` to the TFTP fo
 
 ---
 
-## 4️⃣ Configure dnsmasq
+## Configure dnsmasq
 Sample: `mirror-configs/dnsmasq.conf.sample`
 
 Make sure it provides:
@@ -103,13 +103,13 @@ sudo systemctl enable --now dnsmasq
 
 ---
 
-## 5️⃣ PXE Boot Menu
+## PXE Boot Menu
 Create `pxelinux.cfg/default` inside the TFTP folder.  
 Sample in `mirror-configs/pxelinux.cfg.default.sample`
 
 ---
 
-## 6️⃣ Kickstart Setup
+## Kickstart Setup
 Sample config: `mirror-configs/ks.cfg.sample`
 
 Place it in the HTTP root and reference it in the PXE menu:
@@ -118,13 +118,16 @@ Place it in the HTTP root and reference it in the PXE menu:
 
 ---
 
-## 7️⃣ Boot the Client
+## Boot the Client
 - Set client to boot from network (PXE)
 - Confirm boot menu loads
 - Select install option or let it auto-start
 - Watch Kickstart begin automatically
 
 
-Ready to start? Begin at section 1️⃣ and follow along!
+Ready to start? Enjoy & follow along!
 
+## Have questions?
+
+Feel free to start a [Discussion](https://github.com/YOUR_USERNAME/YOUR_REPO/discussions) if you have questions, ideas, or need help.  
 
