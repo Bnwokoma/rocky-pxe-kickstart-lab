@@ -45,6 +45,7 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 ## Security Notice
 Do **not** push actual IP addresses or sensitive network config. Use `.sample` files instead. 
 
+
 ## Set Secure Passwords for ks.cfg
 
 Before using this Kickstart file, generate a secure SHA-512 password hash on your PXE server or any Linux machine:

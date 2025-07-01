@@ -1,5 +1,3 @@
-# walkthrough.md
-
 # PXE Server Walkthrough – Rocky Linux 9.6 + Kickstart
 
 This guide walks through setting up a PXE server that installs Rocky Linux 9.6 over the network with optional Kickstart automation.
@@ -14,16 +12,22 @@ To make the `.sample` config files work for your environment:
 
 ---
 
-## 1️⃣ System Prep
-**PXE Server OS**: Rocky Linux 9.5 or 9.6  
+## System Prep
+**PXE Server OS**: Rocky Linux 9.6  
 **Ensure internet access** for installing packages.
+**Baremetal machine***
 
+
+####Install Packages & start/enable them
 ```
-sudo dnf update -y
-sudo dnf install -y dnsmasq httpd syslinux xinetd
+sudo dnf update -y # applies updates to your system
+
+sudo dnf install -y dnsmasq httpd syslinux tftp-server  # installs the necessary packages 
+
+sudo dnf systemctl enable --now (nameOfService)
 ```
 
-Create a bridge interface (`br0`) using `nmcli`:
+####Create a bridge interface named (`br0`) using `nmcli`:
 PXE isnt a fan of NAT
 
 ```
@@ -40,23 +44,40 @@ nmcli con show
 
 ---
 
-## 2️⃣ ISO Mounting
+## Copy contents of syslinux to /var/lib/tftpboot
+
+```bash
+sudo cp -r /usr/share/syslinux/* /var/lib/tftpboot
+``
+
+####Create a directory for the PXE boot menu we will create
+
+```
+sudo mkdir -p /var/lib/tftpboot/pxelinux.cfg
+```
+
+####Now lets create the PXE boot menu. 
+You can grab the sample file here pxelinux.cfg.default.sample{insert link}.
+
+
+##Mounting
 Mount the Rocky 9.6 ISO:
 
 ```
 mkdir -p /var/www/html/rocky
-mount -o loop Rocky-9.6-x86_64-dvd.iso /var/www/html/rocky
+sudo mount -o loop /home/admin/Downloads/Rocky-9.6-x86_64-dvd.iso /var/www/html/rocky
 ```
 
-Make sure Apache (`httpd`) is running:
+####Make sure Apache (`httpd') is running. We enabled it in the system prep but double check.
 
 ```
-sudo systemctl enable --now httpd
+sudo systemctl status httpd
+
 ```
 
 ---
 
-## 3️⃣ TFTP Boot Setup
+##TFTP Boot Setup
 Create the TFTP directory:
 
 ```
@@ -76,15 +97,9 @@ Make sure it provides:
 
 Start the service:
 
-bash bash
+```
 sudo systemctl enable --now dnsmasq
-bash bash
-
-Check logs:
-
-bash bash
-journalctl -u dnsmasq
-bash bash
+```
 
 ---
 
