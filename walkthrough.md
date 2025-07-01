@@ -46,9 +46,9 @@ nmcli con show
 
 ## Copy contents of syslinux to /var/lib/tftpboot
 
-```bash
+
 sudo cp -r /usr/share/syslinux/* /var/lib/tftpboot
-``
+
 
 #### Create a directory for the PXE boot menu we will create
 
