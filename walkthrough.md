@@ -24,7 +24,7 @@ sudo dnf update -y # applies updates to your system
 
 sudo dnf install -y dnsmasq httpd syslinux tftp-server  # installs the necessary packages 
 
-sudo dnf systemctl enable --now (nameOfService)
+sudo dnf systemctl enable --now (dnsmasq,tftp,httpd)
 ```
 
 #### Create a bridge interface named (`br0`) using `nmcli`:
@@ -57,23 +57,12 @@ sudo mkdir -p /var/lib/tftpboot/pxelinux.cfg
 ```
 
 #### Now lets create the PXE boot menu. 
+```
+sudo mkdir /var/lib/tftpboot/pxelinux.cfg
+sudo vim /var/lib/tftpboot/pxelinux.cfg/default
+```
 You can grab the sample file here pxelinux.cfg.default.sample{insert link}.
 
-
-## Mounting
-Mount the Rocky 9.6 ISO:
-
-```
-mkdir -p /var/www/html/rocky
-sudo mount -o loop /home/admin/Downloads/Rocky-9.6-x86_64-dvd.iso /var/www/html/rocky
-```
-
-#### Make sure Apache (`httpd') is running. We enabled it in the system prep but double check.
-
-```
-sudo systemctl status httpd
-
-```
 
 ---
 
@@ -81,33 +70,58 @@ sudo systemctl status httpd
 Create the TFTP directory:
 
 ```
-mkdir -p /var/lib/tftpboot/rocky96
+mkdir -p /var/lib/tftpboot/pxe-boot
 ```
 
-Copy `vmlinuz` and `initrd.img` from the ISO's `/images/pxeboot/` to the TFTP folder.
+**Copy `vmlinuz` and `initrd.img` from the ISO's `/images/pxeboot/` to the TFTP folder.**
 
+```
+ sudo cp /var/www/html/rocky/images/pxeboot/{vmlinuz,initrd.img} /var/lib/tftpboot/pxe-boot/
+```
+
+## Mounting
+**Mount the Rocky 9.6 ISO:**
+
+```
+sudo mkdir -p /var/www/html/rocky
+sudo mount -o loop ~/Downloads/Rocky-9.6-x86_64-dvd.iso /mnt
+sudo cp -av /mnt/* /var/www/html/rocky/
+```
+
+## To check the files are being served over http
+```
+curl http://pxeserver-ip/rocky/.treeinfo
+
+or
+
+curl http://localhost/rocky/.treeinfo
+```
 ---
 
 ## Configure dnsmasq
-Sample: `mirror-configs/dnsmasq.conf.sample`
+**Sample: `mirror-configs/dnsmasq.conf.sample`**
 
-Make sure it provides:
-- IP addresses
-- TFTP boot file (pxelinux.0)
-
-Start the service:
+Move existing dnsmasq configuration so we can create a clean version for our environment
 
 ```
-sudo systemctl enable --now dnsmasq
+sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.backup
+
+sudo vim /etc/dnsmasq.conf
 ```
-
 ---
 
-## PXE Boot Menu
-Create `pxelinux.cfg/default` inside the TFTP folder.  
-Sample in `mirror-configs/pxelinux.cfg.default.sample`
+## Open Ports
 
----
+``` 
+sudo firewall-cmd --add-service=http --permanent  # 
+sudo firewall-cmd --add-port=69/udp  --permanent  # TFTP port
+sudo firewall-cmd --add-port=67/udp  --permanent  # DHCP port
+sudo firewall-cmd --reload
+```
+### To check the services and ports added:
+```
+sudo firewall-cmd --list-all
+```
 
 ## Kickstart Setup
 Sample config: `mirror-configs/ks.cfg.sample`
