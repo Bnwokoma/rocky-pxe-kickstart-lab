@@ -21,16 +21,16 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 ---
 
 ## Repo Structure
-- `walkthrough.md` – full step-by-step setup
-- `mirror-configs/` – sample configs for you to copy (no real IPs)
-- `screenshots/` – proof-of-work images for each stage
+- [`walkthrough.md`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md)  
+- [`mirror-configs/`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/mirror-configs)– sample configurationg
+
 
 ---
 
 ## 🧰 Getting Started
 1. Clone this repo
-2. Follow [`walkthrough.md`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md) & ['network-bridge.md'](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/network-bridge) step by step
-3. Customize the sample configs in [`mirror-configs/`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/mirror-configs)
+2. Follow [`walkthrough.md`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md) & ['network-bridge.md'](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/network-bridge) full step-by-step setup.
+3. Customize the sample configs in [`mirror-configs/`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/mirror-configs) to fit your environment.
 
 ---
 
