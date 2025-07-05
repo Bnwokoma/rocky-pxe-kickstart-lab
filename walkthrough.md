@@ -16,9 +16,11 @@ To make the `.sample` config files work for your environment:
 ---
 
 ## System Prep
-**PXE Server OS**: Rocky Linux 9.6 DVD ISO
-**Ensure internet access** for installing packages.
-**Baremetal machine*** to serve as the PXE client.
+- PXE Server OS: Rocky Linux 9.6 DVD ISO
+- Ensure internet access for installing packages.
+- Baremetal machine to serve as the PXE client.
+- If your environment is NAT, you will need to set up a bridge. 
+
 
 
 #### Install Packages & start/enable them
@@ -29,29 +31,11 @@ sudo dnf install -y dnsmasq httpd syslinux tftp-server  # installs the necessary
 
 sudo dnf systemctl enable --now (dnsmasq,tftp,httpd)
 ```
-
-#### Create a bridge interface named (`br0`) using `nmcli`:
-PXE isnt a fan of NAT
-
-```
-nmcli con add type bridge ifname br0 con-name br0 autoconnect yes
-nmcli con add type ethernet ifname enp1s0 master br0
-nmcli con up br0
-```
-
-Verify with:
-
-```
-nmcli con show
-```
-
 ---
 
 ## Copy contents of syslinux to /var/lib/tftpboot
 
-bash
-sudo cp -r /usr/share/syslinux/* /var/lib/tftpboot
-
+ <pre> ```bash sudo cp -r /usr/share/syslinux/* /var/lib/tftpboot ``` </pre>
 
 #### Create a directory for the PXE boot menu we will create
 
