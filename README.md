@@ -15,7 +15,7 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 
 ##  The Setup
 - OS: Rocky Linux 9.5+ (PXE Server)
-- Network: Bridge interface (`br0`) on the PXE server
+- Network: Bridge interface (`br0`) on the PXE server [setup](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/network-bridge/setup-bridge.md)
 - PXE Client: Any physical machine that supports network boot
 
 ---
@@ -27,30 +27,22 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 
 ---
 
-## 📸 Screenshots Preview
-- PXE boot menu
-- GUI installer loading
-- Kickstart auto-install in progress
-- DHCP logs showing PXE handshake
-
----
-
 ## 🧰 Getting Started
 1. Clone this repo
-2. Follow `walkthrough.md` step by step
-3. Customize the sample configs in `mirror-configs/`
+2. Follow [`walkthrough.md`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md) & ['network-bridge.md'](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/network-bridge) step by step
+3. Customize the sample configs in [`mirror-configs/`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/mirror-configs)
 
 ---
 
 ## Security Notice
-Do **not** push actual IP addresses or sensitive network config. Use `.sample` files instead. 
+Do **not** push actual IP addresses or sensitive network config.
 
 
-## Set Secure Passwords for ks.cfg
+## Set Secure Passwords for [ks.cfg](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample)
 
 Before using this Kickstart file, generate a secure SHA-512 password hash on your PXE server or any Linux machine:
 
-```bash
+```
 openssl passwd -6
 ```
 
