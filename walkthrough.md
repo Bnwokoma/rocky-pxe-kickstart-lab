@@ -4,6 +4,9 @@ This guide walks through setting up a PXE server that installs Rocky Linux 9.6 o
 
 --- 
 ## Customizing `.sample` Files
+
+All PXE and Kickstart config examples are available as [sample files](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/mirror-configs).
+
 To make the `.sample` config files work for your environment:
 
 - Replace every `x.x.x.x` with values matching your lab environment.
@@ -13,9 +16,9 @@ To make the `.sample` config files work for your environment:
 ---
 
 ## System Prep
-**PXE Server OS**: Rocky Linux 9.6  
+**PXE Server OS**: Rocky Linux 9.6 DVD ISO
 **Ensure internet access** for installing packages.
-**Baremetal machine***
+**Baremetal machine*** to serve as the PXE client.
 
 
 #### Install Packages & start/enable them
@@ -46,7 +49,7 @@ nmcli con show
 
 ## Copy contents of syslinux to /var/lib/tftpboot
 
-
+bash
 sudo cp -r /usr/share/syslinux/* /var/lib/tftpboot
 
 
@@ -57,12 +60,13 @@ sudo mkdir -p /var/lib/tftpboot/pxelinux.cfg
 ```
 
 #### Now lets create the PXE boot menu. 
+
+- 📁 PXE Config Sample: [pxelinux.cfg.default.sample](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/pxelinux.cfg.default.sample)
+
 ```
 sudo mkdir /var/lib/tftpboot/pxelinux.cfg
 sudo vim /var/lib/tftpboot/pxelinux.cfg/default
 ```
-You can grab the sample file here pxelinux.cfg.default.sample{insert link}.
-
 
 ---
 
@@ -73,7 +77,7 @@ Create the TFTP directory:
 mkdir -p /var/lib/tftpboot/pxe-boot
 ```
 
-**Copy `vmlinuz` and `initrd.img` from the ISO's `/images/pxeboot/` to the TFTP folder.**
+Copy `vmlinuz` and `initrd.img` from the ISO's `/images/pxeboot/` to the TFTP folder.
 
 ```
  sudo cp /var/www/html/rocky/images/pxeboot/{vmlinuz,initrd.img} /var/lib/tftpboot/pxe-boot/
@@ -99,7 +103,7 @@ curl http://localhost/rocky/.treeinfo
 ---
 
 ## Configure dnsmasq
-**Sample: `mirror-configs/dnsmasq.conf.sample`**
+**Sample: mirror-configs/dnsmasq.conf.sample**
 
 Move existing dnsmasq configuration so we can create a clean version for our environment
 
@@ -113,7 +117,7 @@ sudo vim /etc/dnsmasq.conf
 ## Open Ports
 
 ``` 
-sudo firewall-cmd --add-service=http --permanent  # 
+sudo firewall-cmd --add-service=http --permanent   
 sudo firewall-cmd --add-port=69/udp  --permanent  # TFTP port
 sudo firewall-cmd --add-port=67/udp  --permanent  # DHCP port
 sudo firewall-cmd --reload
@@ -127,14 +131,19 @@ sudo firewall-cmd --list-all
 ## Boot the Client
 - Set client to boot from network (PXE) via bios
 - Confirm boot menu loads
-- Select install option or let it auto-start
+- Select install option
+- The install will begin
 
-Done!!
 
-# If you want to add a kickstart file that automatically runs the install, please continue following allong
+# Kickstart option
 
-### Generate password has. This is optional in your lab environment. I created to ks.cfg sample files, one is for plaintext while the other has the password hash.
+## If you want to add a kickstart file that automatically runs the install we pre-configurations, please continue following along
+
+### Generate password hash. This is optional in your lab environment. I created two ks.cfg sample files, one is for plaintext while the other has the password hash.
+
+```
 openssl passwd -6
+```
 
 ### Create the kickstart file, then copy and paste contents from mirror-configs/ks.cfg.sample
 

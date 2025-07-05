@@ -1,0 +1,15 @@
+# Replace x.x.x.x with the IP address of your PXE server
+
+
+default rocky-kickstart
+prompt 0
+timeout 5   # auto boots in 5 seconds
+ONTIMEOUT rocky-kickstart
+
+menu title ### Rocky Linux 9.6 PXE Boot Menu ###
+
+LABEL rocky-kickstart
+  MENU label Auto Install Rocky Linux 9.6 (Kickstart)
+  KERNEL pxe-boot/vmlinuz
+  APPEND initrd=pxe-boot/initrd.img inst.zram=1 inst.ks=http://x.x.x.x/ks.cfg
+
