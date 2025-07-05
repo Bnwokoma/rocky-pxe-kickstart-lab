@@ -122,24 +122,33 @@ sudo firewall-cmd --reload
 ```
 sudo firewall-cmd --list-all
 ```
-
-## Kickstart Setup
-Sample config: `mirror-configs/ks.cfg.sample`
-
-Place it in the HTTP root and reference it in the PXE menu:
-
-`inst.ks=http://<server-ip>/ks.cfg`
-
 ---
 
 ## Boot the Client
-- Set client to boot from network (PXE)
+- Set client to boot from network (PXE) via bios
 - Confirm boot menu loads
 - Select install option or let it auto-start
-- Watch Kickstart begin automatically
 
+Done!!
 
-Ready to start? Enjoy & follow along!
+# If you want to add a kickstart file that automatically runs the install, please continue following allong
+
+### Generate password has. This is optional in your lab environment. I created to ks.cfg sample files, one is for plaintext while the other has the password hash.
+openssl passwd -6
+
+### Create the kickstart file, then copy and paste contents from mirror-configs/ks.cfg.sample
+
+```
+sudo vim /var/www/html/ks.cfg
+```
+
+#### If you want a headless install just change @^workstation-product-environment to @^minimal-environment in the ks.cfg.sample file
+
+### Change selinux contexts to allow Apache(httpd) to serve the file
+
+```
+sudo chcon -t httpd_sys_content_t /var/www/html/ks.cfg
+```
 
 ## Have questions?
 
