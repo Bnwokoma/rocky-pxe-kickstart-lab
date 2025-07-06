@@ -15,8 +15,8 @@ To make the `.sample` config files work for your environment:
 
 ---
 
-## System Prep
-- PXE Server OS: Install Rocky Linux 9.6 DVD ISO
+## Requirements needed
+- Download the Rocky Linux 9.6 DVD ISO from official Rocky Linux site
 - Ensure internet access for installing packages.
 - Baremetal machine to serve as the PXE client.
 - If your environment is NAT based, you will need to set up a bridge [here](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/network-bridge/setup-bridge.md)
@@ -89,7 +89,7 @@ curl http://localhost/rocky/.treeinfo
 ## 6. Configure dnsmasq
 Use this sample: [mirror-configs/dnsmasq.conf.sample](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/dnsmasq.conf.sample)
 
-Move existing dnsmasq configuration so we can create a clean version for our environment
+Move the existing dnsmasq configuration so we can create a clean version for our environment
 
 ```
 sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.backup # moves existing conf so we can create one for our environment
@@ -101,9 +101,11 @@ sudo vim /etc/dnsmasq.conf
 ## 7. Open Ports
 
 ``` 
-sudo firewall-cmd --add-service=http --permanent   
-sudo firewall-cmd --add-port=69/udp  --permanent  # TFTP port
-sudo firewall-cmd --add-port=67/udp  --permanent  # DHCP port
+sudo firewall-cmd --add-service=http --permanent
+sudo firewall-cmd --add-service=dns --permanent 
+sudo firewall-cmd --add-service=dhcp --permanent  
+sudo firewall-cmd --add-port=69/udp --permanent  # TFTP port
+sudo firewall-cmd --add-port=4011/udp --permanent  # PXE
 sudo firewall-cmd --reload
 ```
 ### To check the services and ports added:
@@ -113,10 +115,14 @@ sudo firewall-cmd --list-all
 ---
 
 ## 8. Boot the Client
-- Set client to boot from network (PXE) via bios
+- Set client to boot from network (PXE) via Bios
 - Confirm boot menu loads
 - Select install option
 - The install will begin
+
+When installation is complete, boot back into bios and change the boot order back to local/internal HDD
+
+Rocky Linux is now the OS of your machine!
 
 
 # Kickstart option
@@ -128,13 +134,13 @@ If you want to add a kickstart file that automatically runs the install we pre-c
 - [Sample Kickstart file (plaintext)](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample.txt)  
 - [Sample Kickstart file (with hashed passwords)](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample.hashed)
 
-
+If you are using the Kickstart file with hashed passwords, follow the command below
 
 ```
 openssl passwd -6
 ```
 
-### Create the kickstart file, then copy and paste contents from mirror-configs/ks.cfg.sample
+### Create the kickstart file, using sample from one of the options above
 
 ```
 sudo vim /var/www/html/ks.cfg
@@ -153,5 +159,5 @@ sudo chcon -t httpd_sys_content_t /var/www/html/ks.cfg
 
 ## Have questions?
 
-Feel free to start a [Discussion](https://github.com/YOUR_USERNAME/YOUR_REPO/discussions) if you have questions, ideas, or need help.  
+If you have any questions, comments or suggestions, please feel free to reach out to me on LinkedIn or add a comment in [Discussions](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/discussions/1)
 
