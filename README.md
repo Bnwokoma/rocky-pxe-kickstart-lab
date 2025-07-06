@@ -40,12 +40,13 @@ Before using the hashed Kickstart file, generate a secure SHA-512 password hash
 openssl passwd -6
 ```
 
-You'll be prompted to enter your desired password. Copy the resulting hash and paste it in place of the `$6$REPLACE_WITH_HASHED_PASSWORD` placeholders inside `ks.cfg.hashedpasswd`:
+You'll be prompted to enter your desired password. Copy the resulting hash and paste it in place of the `$6$REPLACE_WITH_HASHED_PASSWORD` placeholders inside [`ks.cfg.hashedpasswd`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.hashedpasswd):
+
 ---
 
 # Ready,Set, Build!
 
-##Follow the steps [here](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md) to begin.
+## Follow the steps [here](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md) to begin.
 
 ---
 
