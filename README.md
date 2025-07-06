@@ -7,8 +7,8 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 ## Features
 - PXE boot via `dnsmasq` (DHCP + TFTP)
 - HTTP-based installer with mounted Rocky Linux 9.6 ISO
-- Kickstart automation for headless installs
-- Walkthrough-style documentation with screenshots
+- Kickstart automation
+- Walkthrough-style documentation 
 - Secure sample configs that hide sensitive data
 
 ---
@@ -22,12 +22,12 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 
 ## Repo Structure
 - [`walkthrough.md`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md)  
-- [`mirror-configs/`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/mirror-configs)– sample configurationg
+- [`mirror-configs/`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/mirror-configs)– sample configurations
 
 
 ---
 
-## 🧰 Getting Started
+## Getting Started
 1. Clone this repo
 2. Follow [`walkthrough.md`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md) & ['network-bridge.md'](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/network-bridge) full step-by-step setup.
 3. Customize the sample configs in [`mirror-configs/`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/mirror-configs) to fit your environment.
@@ -40,7 +40,7 @@ Do **not** push actual IP addresses or sensitive network config.
 
 ## Set Secure Passwords for [ks.cfg](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample)
 
-Before using this Kickstart file, generate a secure SHA-512 password hash on your PXE server or any Linux machine:
+Before using this Kickstart file, generate a secure SHA-512 password hash 
 
 ```
 openssl passwd -6
