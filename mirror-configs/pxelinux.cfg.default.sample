@@ -2,7 +2,7 @@
 
 default menu.c32
 prompt 1     # Shows the boot menu and allows selection
-timeout 300  # 30 second countdown before auto-select
+timeout 150  # 15 second countdown before auto-select
 ONTIMEOUT local
 
 menu title ### Rocky Linux 9.6 Boot Menu ###
