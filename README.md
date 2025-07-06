@@ -15,7 +15,7 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 
 ##  The Setup
 - OS: Rocky Linux 9.5+ (PXE Server)
-- Network: Bridge interface (`br0`) on the PXE server [setup](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/network-bridge/setup-bridge.md)
+- Network: Bridge interface (`br0`) on the PXE server [setup](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/network-bridge/setup-bridge.md) if you have a NAT environment
 - PXE Client: Any physical machine that supports network boot
 
 ---
