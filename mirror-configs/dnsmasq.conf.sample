@@ -1,5 +1,5 @@
 # Network interfaces to listen on
-interface=br0,lo
+interface=br0,
 bind-interfaces
 
 # Set your internal DNS domain name (can be anything)
@@ -37,11 +37,11 @@ dhcp-option=28,x.x.x.255
 
 # NTP server
 # Optional. Replace or leave as 0.0.0.0
-#
+
 dhcp-option=42,0.0.0.0
 
 # TFTP settings
-#
+
 enable-tftp
 tftp-root=/var/lib/tftpboot
 
