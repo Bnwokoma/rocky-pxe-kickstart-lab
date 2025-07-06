@@ -1,0 +1,36 @@
+/var/www/html
+├── ks
+│   └── rocky-auto.ks
+├── ks.cfg
+├── os
+└── rocky
+    ├── AppStream
+    │   ├── Packages
+    │   └── repodata
+    ├── BaseOS
+    │   ├── Packages
+    │   └── repodata
+    ├── EFI
+    │   └── BOOT
+    ├── images
+    │   ├── efiboot.img
+    │   ├── install.img
+    │   └── pxeboot
+    ├── isolinux
+    │   ├── boot.cat
+    │   ├── boot.msg
+    │   ├── grub.conf
+    │   ├── initrd.img
+    │   ├── isolinux.bin
+    │   ├── isolinux.cfg
+    │   ├── ldlinux.c32
+    │   ├── libcom32.c32
+    │   ├── libutil.c32
+    │   ├── memtest
+    │   ├── splash.png
+    │   ├── vesamenu.c32
+    │   └── vmlinuz
+    ├── LICENSE
+    └── media.repo
+
+14 directories, 19 files
