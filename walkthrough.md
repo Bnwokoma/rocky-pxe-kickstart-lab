@@ -16,7 +16,7 @@ To make the `.sample` config files work for your environment:
 ---
 
 ## System Prep
-- PXE Server OS: Rocky Linux 9.6 DVD ISO
+- PXE Server OS: Install Rocky Linux 9.6 DVD ISO
 - Ensure internet access for installing packages.
 - Baremetal machine to serve as the PXE client.
 - If your environment is NAT, you will need to set up a bridge. 
@@ -33,11 +33,11 @@ sudo dnf systemctl enable --now (dnsmasq,tftp,httpd)
 ```
 ---
 
-## Copy contents of syslinux to /var/lib/tftpboot
+## Copy Syslinux Boot Files to /var/lib/tftpboot
 
  <pre> ```bash sudo cp -r /usr/share/syslinux/* /var/lib/tftpboot ``` </pre>
 
-#### Create a directory for the PXE boot menu we will create
+#### Create a directory for PXE Boot Menu
 
 ```
 sudo mkdir -p /var/lib/tftpboot/pxelinux.cfg
@@ -48,7 +48,6 @@ sudo mkdir -p /var/lib/tftpboot/pxelinux.cfg
 - 📁 PXE Config Sample: [pxelinux.cfg.default.sample](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/pxelinux.cfg.default.sample)
 
 ```
-sudo mkdir /var/lib/tftpboot/pxelinux.cfg
 sudo vim /var/lib/tftpboot/pxelinux.cfg/default
 ```
 
@@ -72,13 +71,13 @@ Copy `vmlinuz` and `initrd.img` from the ISO's `/images/pxeboot/` to the TFTP fo
 
 ```
 sudo mkdir -p /var/www/html/rocky
-sudo mount -o loop ~/Downloads/Rocky-9.6-x86_64-dvd.iso /mnt
+sudo mount -o loop ~/Downloads/Rocky-9.6-x86_64-dvd.iso /mnt #Use the path to wherever your Rocky iso is located
 sudo cp -av /mnt/* /var/www/html/rocky/
 ```
 
 ## To check the files are being served over http
 ```
-curl http://pxeserver-ip/rocky/.treeinfo
+curl http://<pxeserver-ip>/rocky/.treeinfo
 
 or
 
@@ -87,12 +86,12 @@ curl http://localhost/rocky/.treeinfo
 ---
 
 ## Configure dnsmasq
-**Sample: mirror-configs/dnsmasq.conf.sample**
+Use this sample: [mirror-configs/dnsmasq.conf.sample](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/dnsmasq.conf.sample)
 
 Move existing dnsmasq configuration so we can create a clean version for our environment
 
 ```
-sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.backup
+sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.backup # moves existing conf so we can create one for our environment
 
 sudo vim /etc/dnsmasq.conf
 ```

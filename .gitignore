@@ -9,6 +9,9 @@
 *.conf
 *.key
 *.pem
+*.bak
+*.backup
+*.backups
 
 tftpboot/
 httpboot/
@@ -16,3 +19,33 @@ httpboot/
 *~
 *.swp
 
+
+
+# vim temporary files
+*.swo
+*.swp
+
+# Mount and build directories
+/mnt/
+/var/
+/tmp/
+/run/
+/proc/
+/sys/
+/dev/
+/media/
+/home/*/.bash_history
+
+# Don't include compiled config files or backups
+*.cfg~
+*.sample~
+
+# Ignore network-specific override files
+/etc/dnsmasq.conf
+/var/www/html/ks.cfg
+
+# Editor and OS-specific
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
