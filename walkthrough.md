@@ -19,11 +19,12 @@ To make the `.sample` config files work for your environment:
 - PXE Server OS: Install Rocky Linux 9.6 DVD ISO
 - Ensure internet access for installing packages.
 - Baremetal machine to serve as the PXE client.
-- If your environment is NAT, you will need to set up a bridge. 
+- If your environment is NAT based, you will need to set up a bridge [here](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/network-bridge/setup-bridge.md)
 
 
+---
 
-#### 1. Install Packages & start/enable them
+## 1. Install Packages & start/enable them
 ```
 sudo dnf update -y # applies updates to your system
 
@@ -35,7 +36,7 @@ sudo dnf systemctl enable --now (dnsmasq,tftp,httpd)
 
 ## 2. Copy Syslinux Boot Files to /var/lib/tftpboot
 
- <pre> ```bash sudo cp -r /usr/share/syslinux/* /var/lib/tftpboot ``` </pre>
+ <pre> ``` sudo cp -r /usr/share/syslinux/* /var/lib/tftpboot ``` </pre>
 
 #### 3. Create a directory for PXE Boot Menu
 
@@ -75,7 +76,7 @@ sudo mount -o loop ~/Downloads/Rocky-9.6-x86_64-dvd.iso /mnt #Use the path to wh
 sudo cp -av /mnt/* /var/www/html/rocky/
 ```
 
-## To check the files are being served over http
+### To check that the files are being served over http
 ```
 curl http://<pxeserver-ip>/rocky/.treeinfo
 
