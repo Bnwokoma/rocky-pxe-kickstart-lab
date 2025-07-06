@@ -166,6 +166,8 @@ sudo vim /var/www/html/ks.cfg
 ```
 sudo chcon -t httpd_sys_content_t /var/www/html/ks.cfg
 ```
+---
+With Kickstart there are many options/configurations you can do. What we have here is really a minimum kickstart config. Once done play around with what else you can add to your ks.cfg file.
 
 ## Have questions?
 
