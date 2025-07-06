@@ -15,12 +15,15 @@ reboot
 
 network --bootproto=dhcp --device=link --onboot=on --activate
 
+#Replace x.x.x.x with your PXE server address
 url --url="http://x.x.x.x/rocky"
 
 bootloader --location=mbr
 clearpart --all --initlabel
 autopart --type=lvm
 
+
+#For headless installation replace @^workstation-product-environment with @^minimal-environment 
 %packages
 @^workstation-product-environment
 vim
