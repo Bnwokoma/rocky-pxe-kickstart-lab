@@ -120,9 +120,14 @@ sudo firewall-cmd --list-all
 
 # Kickstart option
 
-## If you want to add a kickstart file that automatically runs the install we pre-configurations, please continue following along
+If you want to add a kickstart file that automatically runs the install we pre-configurations, please continue following along
 
 ### Generate password hash. This is optional in your lab environment. I created two ks.cfg sample files, one is for plaintext while the other has the password hash.
+
+[Sample Kickstart (plaintext)](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample.txt)  
+[Sample Kickstart (with hashed passwords)](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample)
+
+
 
 ```
 openssl passwd -6
