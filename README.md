@@ -41,3 +41,11 @@ openssl passwd -6
 ```
 
 You'll be prompted to enter your desired password. Copy the resulting hash and paste it in place of the `$6$REPLACE_WITH_HASHED_PASSWORD` placeholders inside `ks.cfg`:
+
+# Ready,Set, Build!
+
+Follow the steps [here](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md) to begin.
+
+---
+
+If you have any questions, comments or suggestions, please feel free to reach out to me on LinkedIn or add a comment in [Discussions](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/discussions/1) 
