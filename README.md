@@ -1,12 +1,12 @@
 # Rocky Linux PXE Boot + Kickstart Lab
 
-A step-by-step lab to build a fully automated PXE server for installing Rocky Linux 9.6 over the network using Kickstart. This lab is designed to be reproducible and beginner-friendly, with config examples and screenshots.
+A step-by-step lab to build a fully automated PXE server for installing Rocky Linux 9.6 over the network using using PXE with Kickstart as an optional feature. This lab is designed to be reproducible and beginner-friendly, with config examples and a step-by-step walkthrough
 
 ---
 
 ## Features
 - PXE boot via `dnsmasq` (DHCP + TFTP)
-- HTTP-based installer with mounted Rocky Linux 9.6 ISO
+- HTTP-based installer with a mounted Rocky Linux 9.6 ISO
 - Kickstart automation
 - Walkthrough-style documentation 
 - Secure sample configs that hide sensitive data
@@ -20,16 +20,10 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 
 ---
 
-## Repo Structure
-- [`walkthrough.md`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md)  
-- [`mirror-configs/`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/mirror-configs)– sample configurations
-
-
----
-
 ## Getting Started
 1. Clone this repo
-2. Follow [`walkthrough.md`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md) & ['network-bridge.md'](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/network-bridge) full step-by-step setup.
+2. Follow [`walkthrough.md`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/walkthrough.md) full step-by-step setup.
+3. If you environment is NAT based, follow steps to create a bridge [here](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/network-bridge).
 3. Customize the sample configs in [`mirror-configs/`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/tree/main/mirror-configs) to fit your environment.
 
 ---
