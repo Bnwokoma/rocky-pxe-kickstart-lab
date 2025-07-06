@@ -1,5 +1,5 @@
 # Network interfaces to listen on
-interface=br0,
+interface=br0
 bind-interfaces
 
 # Set your internal DNS domain name (can be anything)
