@@ -23,7 +23,7 @@ To make the `.sample` config files work for your environment:
 
 
 
-#### Install Packages & start/enable them
+#### 1. Install Packages & start/enable them
 ```
 sudo dnf update -y # applies updates to your system
 
@@ -33,11 +33,11 @@ sudo dnf systemctl enable --now (dnsmasq,tftp,httpd)
 ```
 ---
 
-## Copy Syslinux Boot Files to /var/lib/tftpboot
+## 2. Copy Syslinux Boot Files to /var/lib/tftpboot
 
  <pre> ```bash sudo cp -r /usr/share/syslinux/* /var/lib/tftpboot ``` </pre>
 
-#### Create a directory for PXE Boot Menu
+#### 3. Create a directory for PXE Boot Menu
 
 ```
 sudo mkdir -p /var/lib/tftpboot/pxelinux.cfg
@@ -53,7 +53,7 @@ sudo vim /var/lib/tftpboot/pxelinux.cfg/default
 
 ---
 
-## TFTP Boot Setup
+## 4. TFTP Boot Setup
 Create the TFTP directory:
 
 ```
@@ -66,7 +66,7 @@ Copy `vmlinuz` and `initrd.img` from the ISO's `/images/pxeboot/` to the TFTP fo
  sudo cp /var/www/html/rocky/images/pxeboot/{vmlinuz,initrd.img} /var/lib/tftpboot/pxe-boot/
 ```
 
-## Mounting
+## 5. Mounting
 **Mount the Rocky 9.6 ISO:**
 
 ```
@@ -85,7 +85,7 @@ curl http://localhost/rocky/.treeinfo
 ```
 ---
 
-## Configure dnsmasq
+## 6. Configure dnsmasq
 Use this sample: [mirror-configs/dnsmasq.conf.sample](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/dnsmasq.conf.sample)
 
 Move existing dnsmasq configuration so we can create a clean version for our environment
@@ -97,7 +97,7 @@ sudo vim /etc/dnsmasq.conf
 ```
 ---
 
-## Open Ports
+## 7. Open Ports
 
 ``` 
 sudo firewall-cmd --add-service=http --permanent   
@@ -111,7 +111,7 @@ sudo firewall-cmd --list-all
 ```
 ---
 
-## Boot the Client
+## 8. Boot the Client
 - Set client to boot from network (PXE) via bios
 - Confirm boot menu loads
 - Select install option
@@ -125,7 +125,7 @@ If you want to add a kickstart file that automatically runs the install we pre-c
 ### Generate password hash. This is optional in your lab environment. I created two ks.cfg sample files, one is for plaintext while the other has the password hash.
 
 [Sample Kickstart (plaintext)](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample.txt)  
-[Sample Kickstart (with hashed passwords)](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample)
+[Sample Kickstart (with hashed passwords)](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample.hashed)
 
 
 
@@ -138,8 +138,6 @@ openssl passwd -6
 ```
 sudo vim /var/www/html/ks.cfg
 ```
-
-#### If you want a headless install just change @^workstation-product-environment to @^minimal-environment in the ks.cfg.sample file
 
 ### Change selinux contexts to allow Apache(httpd) to serve the file
 
