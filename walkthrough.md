@@ -125,8 +125,8 @@ If you want to add a kickstart file that automatically runs the install we pre-c
 
 ### Generate password hash. This is optional in your lab environment. I created two ks.cfg sample files, one is for plaintext while the other has the password hash.
 
-[Sample Kickstart (plaintext)](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample.txt)  
-[Sample Kickstart (with hashed passwords)](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample.hashed)
+- [Sample Kickstart file (plaintext)](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample.txt)  
+- [Sample Kickstart file (with hashed passwords)](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample.hashed)
 
 
 
@@ -139,6 +139,11 @@ openssl passwd -6
 ```
 sudo vim /var/www/html/ks.cfg
 ```
+
+### Update PXE boot configuration to add a path to ks.cfg
+- 📁 PXE Config Sample with Kickstart: [here](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/kickstart.pxe.cfg.sample)
+
+
 
 ### Change selinux contexts to allow Apache(httpd) to serve the file
 
