@@ -21,9 +21,19 @@ To make the `.sample` config files work for your environment:
 - Baremetal machine to serve as the PXE client.
 - If your environment is NAT based, you will need to set up a bridge [here](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/network-bridge/setup-bridge.md)
 
+### Directory Layouts
+
+You can view the full directory structures here of tftp boot and http:
+
+- [Tree md](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/directory_layout/tree-views.md)
+- [`tftpboot.tree.txt`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/directory_layout/tftpboot.tree.txt) – PXE boot file layout
+- [`http-root.tree.txt`](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/directory_layout/http-root.tree.txt) – HTTP Kickstart and mirror layout
 
 ---
 
+# Lets Begin! =)
+
+---
 ## 1. Install Packages & start/enable them
 ```
 sudo dnf update -y # applies updates to your system
