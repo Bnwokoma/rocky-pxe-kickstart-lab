@@ -125,7 +125,8 @@ sudo firewall-cmd --list-all
 ---
 
 ## 8. Boot the Client
-- Set client to boot from network (PXE) via Bios
+- Disable secure boot
+- Set client to boot from network (PXE) via Bios.
 - Confirm boot menu loads
 - Select install option
 - The install will begin
