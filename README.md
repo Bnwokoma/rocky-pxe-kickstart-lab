@@ -32,15 +32,15 @@ A step-by-step lab to build a fully automated PXE server for installing Rocky Li
 Do **not** push actual IP addresses or sensitive network config.
 
 
-## Set Secure Passwords for [ks.cfg](https://github.com/Bnwokoma/rocky-pxe-kickstart-lab/blob/main/mirror-configs/ks.cfg.sample)
+## Set Secure Passwords for kickstart configuration
 
-Before using this Kickstart file, generate a secure SHA-512 password hash 
+Before using the hashed Kickstart file, generate a secure SHA-512 password hash 
 
 ```
 openssl passwd -6
 ```
 
-You'll be prompted to enter your desired password. Copy the resulting hash and paste it in place of the `$6$REPLACE_WITH_HASHED_PASSWORD` placeholders inside `ks.cfg`:
+You'll be prompted to enter your desired password. Copy the resulting hash and paste it in place of the `$6$REPLACE_WITH_HASHED_PASSWORD` placeholders inside `ks.cfg.hashedpasswd`:
 
 # Ready,Set, Build!
 
