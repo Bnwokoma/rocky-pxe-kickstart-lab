@@ -20,6 +20,8 @@ reboot
 
 network --bootproto=dhcp --device=link --onboot=on --activate
 
+# Replace x.x.x.x with your PXE server address
+
 url --url="http://x.x.x.x/rocky"
 
 bootloader --location=mbr
