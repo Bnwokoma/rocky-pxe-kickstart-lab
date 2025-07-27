@@ -70,12 +70,42 @@ This listens for:
 
 You should see packets like DHCPDISCOVER and DHCPOFFER when a PXE client boots.
 
-If you don’t see any traffic, re-check:
 
-- The PXE client is using the bridge.
+### Troubleshooting Note: PXE Boot Looped Back to Itself
 
-- The PXE server is listening on br0.
+If your PXE client appears to request TFTP files but the boot process hangs or loops, check if your PXE server is accidentally serving TFTP requests to itself.
 
-- There are no firewalls blocking communication.
+This happened in our lab setup when `br0` was created but not properly attached to the physical NIC (`eno1`). As a result:
+
+-   PXE clients sent DHCP/TFTP requests
+
+-   But the PXE server's TFTP service looped those requests back into itself
+
+-   It tried to fetch `/pxelinux.0` from its own TFTP service, as if it were the PXE client
+
+* * * * *
+
+### Fix
+
+Make sure your physical NIC is correctly added as a bridge slave to `br0`. For example:
+
+```
+nmcli connection add type bridge-slave autoconnect yes con-name br0-slave ifname eno1 master br0
+```
+
+Use `ip a` and confirm that:
+
+-   `eno1` shows `master br0`
+
+-   `br0` has the static IP assigned
+
+-   PXE traffic is visible using:
 
 
+Then bring everything up:
+
+```
+nmcli connection up br0
+```
+
+Once fixed, PXE clients will successfully reach the server, and TFTP will serve files properly from `/var/lib/tftpboot`.
